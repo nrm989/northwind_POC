@@ -89,7 +89,7 @@ This pipeline is executed when a **full load** is required, typically during the
 
 This pipeline is triggered when performing an **incremental load**, using watermark values to ingest only new or updated data since the last successful execution.
 
-![IncrementalLoading](images/noinitial.png)
+![IncrementalLoading](images/notinitial.png)
 
 
 ### Next steps
