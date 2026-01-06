@@ -52,11 +52,11 @@ VALUES
     ('Shippers', 'dbo', 'northwind', 'ShipperID', 'ID', 'ShipperID', NULL, NULL, 'Dimensions', 'Retail'),
     ('Region', 'dbo', 'northwind', 'RegionID', 'ID', 'RegionID', NULL, NULL, 'Dimensions', 'Retail'),
     ('Territories', 'dbo', 'northwind', 'TerritoryID', 'ID', 'TerritoryID', NULL, NULL, 'Dimensions', 'Retail'),
-    ('Customer Demographics', 'dbo', 'northwind', 'CustomerTypeID', 'ID', 'CustomerTypeID', NULL, NULL, 'Dimensions', 'Retail'),
+    ('CustomerDemographics', 'dbo', 'northwind', 'CustomerTypeID', 'ID', 'CustomerTypeID', NULL, NULL, 'Dimensions', 'Retail'),
 
     -- Bridges
-    ('Employee Territories', 'dbo', 'northwind', 'EmployeeID', 'ID', 'EmployeeID', NULL, NULL, 'Bridges', 'Retail'),
-    ('CustomerCustomerDemo', 'dbo', 'northwind', 'CustomerID', 'ID', 'CustomerID', NULL, NULL, 'Bridges', 'Retail'),
+    ('EmployeeTerritories', 'dbo', 'northwind', 'EmployeeID', 'ID', 'EmployeeID|TerritoryID', NULL, NULL, 'Bridges', 'Retail'),
+    ('CustomerCustomerDemo', 'dbo', 'northwind', 'CustomerID', 'ID', 'CustomerID|CustomerTypeID', NULL, NULL, 'Bridges', 'Retail'),
 
     -- Facts
     ('Orders', 'dbo', 'northwind', 'OrderDate', 'Datetime', 'OrderID', 'OrderDate', 'Date', 'Facts', 'Retail'),
