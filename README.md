@@ -56,12 +56,15 @@ The project also implements several architectural patterns, including **metadata
 ### Data & Metadata Structures
 
 The solution is built on a metadata-driven approach, starting with a central **SQL Catalog table** that stores all configuration details related to the source database tables, including load type, watermarks, and control flags. This table drives the dynamic behavior of the pipelines.
+
 ![SQL Catalog Table](images/sqlwatermark.png)
 
 A dedicated **Logs table** is used to capture detailed execution metadata for each pipeline run. It records pipeline identifiers, layer-level execution status, timestamps, and other operational metrics required for monitoring and audit purposes.
+
 ![Logs Table](images/logs_table.png)
 
 To support orchestration and observability, **stored procedures** are implemented and invoked directly from the pipelines. These procedures manage watermark updates and persist execution logs into the SQL Logs table.
+
 ![Stored Procedures](images/stored_procedure.png)
 
 
@@ -69,9 +72,11 @@ To support orchestration and observability, **stored procedures** are implemente
 ### Pipeline & Orchestration
 
 The **parent pipeline** orchestrates the overall ingestion workflow. It coordinates metadata retrieval, control logic, and the execution of child pipelines responsible for data ingestion and transformation.
+
 ![Parent Pipeline](images/parent_pipe.png)
 
 The **child pipeline** performs the actual ingestion logic. Its behavior is dynamically driven by the `IsInitialLoad` flag defined in the SQL Catalog table, allowing the pipeline to switch seamlessly between full and incremental load strategies.
+
 ![Child Pipeline](images/child_pipe.png)
 
 
@@ -79,9 +84,11 @@ The **child pipeline** performs the actual ingestion logic. Its behavior is dyna
 ### Initialization Logic
 
 This pipeline is executed when a **full load** is required, typically during the first ingestion or a complete data reload scenario.
+
 ![IsInitialLoading](images/initial.png)
 
 This pipeline is triggered when performing an **incremental load**, using watermark values to ingest only new or updated data since the last successful execution.
+
 ![IncrementalLoading](images/noinitial.png)
 
 
